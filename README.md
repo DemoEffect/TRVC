@@ -1,7 +1,9 @@
 # Thermostatic Radiator Valve Controller - TRVC
 
 
-**TRVC** is a DIY smart thermostatic radiator valve controller designed for retrofitting traditional radiators with intelligent control. Based on the ESP32 platform and powered via Ethernet, TRVC helps optimize room temperature and reduce gas consumption.
+**TRVC** is a DIY smart thermostatic radiator valve controller designed for retrofitting traditional radiators with intelligent control. Based on the ESP32 platform and powered via Ethernet.
+TRVC helps optimize room temperature and reduce energy consumption, not heating the rooms which not needed.
+(It's also super handy if you like Arctic weather and your partner’s more of a Sahara fan – or the other way around. 😄)
 
 
 📟 [Schematic & PCB @ OSHWlab](https://oshwlab.com/fazy/trv-controller)
