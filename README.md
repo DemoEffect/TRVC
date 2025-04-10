@@ -14,9 +14,9 @@ TRVC helps optimize room temperature and reduce energy consumption, not heating 
 
 - 🧠 Smart temperature regulation
 - 🌐 Ethernet-based power and communication (PoE support)
-- 📱 Integration with Home Assistant (Esphome, NodeRED)
+- 📱 Integration with Home Assistant (ESPHome, NodeRED)
 - 💾 OTA firmware updates
-- 🔒 Secure communication with MQTT support
+- 🔒 Secure communication with ESPHome API
 
 ---
 
