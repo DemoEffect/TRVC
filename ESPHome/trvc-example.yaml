@@ -1,0 +1,69 @@
+esphome:
+  name: trvc-kitchen-front # Copy this from your yaml
+  friendly_name: TRVC-Kitchen-Front # Copy this from your yaml
+
+esp32:
+  board: esp-wrover-kit #esp32dev
+  framework:
+    type: arduino
+
+ethernet:
+  type: LAN8720
+  mdc_pin: GPIO23
+  mdio_pin: GPIO18
+  clk_mode: GPIO0_IN
+  phy_addr: 1
+  power_pin: GPIO16
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "supersecretAPIkey" # Copy this from your yaml
+
+ota:
+  - platform: esphome
+    password: "supersecretOTAkey" # Copy this from your yaml
+
+light:
+  - platform: monochromatic
+    name: "Close valve"  # Or Open... depends on the actuator is Normally Open or Closed
+    icon: "mdi:radiator"
+    output: pwm_output
+    gamma_correct: 1
+    id: radiator_pwm
+    default_transition_length: 60s
+
+output:
+  - platform: gpio
+    pin: GPIO17
+    id: kitchen_front_coldled_out
+    inverted: True
+  - platform: gpio
+    pin: GPIO33
+    id: kitchen_front_hotled_out
+    inverted: True
+  - platform: ledc
+    pin: GPIO32
+    frequency: 2000 Hz
+    id: pwm_output
+
+interval:
+  - interval: 3s
+    then:
+      - if:
+          condition:
+            light.is_on: radiator_pwm
+          then:
+            - output.turn_on: kitchen_front_coldled_out   # Swap the turn_on/turn_off based on NO or NC actuator
+            - output.turn_off: kitchen_front_hotled_out   # Swap the turn_on/turn_off based on NO or NC actuator
+          else:
+            - output.turn_on: kitchen_front_hotled_out    # Swap the turn_on/turn_off based on NO or NC actuator
+            - output.turn_off: kitchen_front_coldled_out  # Swap the turn_on/turn_off based on NO or NC actuator
+    
+button:
+- platform: restart
+  name: "TRVC-Kitchen-Front Restart" # Just a reset button... sometimes it can be helpful
+
