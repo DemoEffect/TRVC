@@ -34,7 +34,7 @@ light:
     output: pwm_output
     gamma_correct: 1
     id: radiator_pwm
-    default_transition_length: 60s
+    default_transition_length: 30s # Configure this based on your switch capabilities
 
 output:
   - platform: gpio
@@ -47,7 +47,7 @@ output:
     inverted: True
   - platform: ledc
     pin: GPIO32
-    frequency: 2000 Hz
+    frequency: 1000 Hz    # Change this if you want different PWM frequency
     id: pwm_output
 
 interval:
